@@ -95,7 +95,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         {milestone.content}
       </span>
       {isCurrent && !milestone.completed && (
-        <span className="shrink-0 rounded-full bg-[#d8d8d8] px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:bg-[#e0e0e0] dark:text-blue-600">
+        <span className="shrink-0 rounded-full bg-[#a0a0a0] px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:bg-[#faf8f8] dark:text-blue-600">
           진행중
         </span>
       )}
