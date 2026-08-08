@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { CheckCircle2, Circle, Pencil, Trash2 } from 'lucide-react'
+import { getUrgencyLevel, URGENCY_DOT_CLASS, URGENCY_LABEL } from '../milestoneUtils'
 
 export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, onDelete }) {
   const [isEditing, setIsEditing] = useState(false)
+  const urgency = !milestone.completed ? getUrgencyLevel(milestone.date) : null
   const [draft, setDraft] = useState({
     date: milestone.date,
     target: milestone.target,
@@ -65,7 +67,15 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
           <Circle className="text-gray-300" size={16} />
         )}
       </button>
-      <span className="w-20 shrink-0 text-gray-400">{milestone.date || '날짜 없음'}</span>
+      <span className="flex w-24 shrink-0 items-center gap-1.5 text-gray-400">
+        {urgency && (
+          <span
+            className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[urgency]}`}
+            title={URGENCY_LABEL[urgency]}
+          />
+        )}
+        {milestone.date || '날짜 없음'}
+      </span>
       {milestone.target && (
         <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500">{milestone.target}</span>
       )}

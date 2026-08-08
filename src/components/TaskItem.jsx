@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CheckCircle2, Circle, Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
 import MilestoneList from './MilestoneList'
 import MilestoneForm from './MilestoneForm'
+import { getUrgencyLevel, nearestIncompleteMilestone, URGENCY_DOT_CLASS } from '../milestoneUtils'
 
 export default function TaskItem({
   task,
@@ -37,6 +38,8 @@ export default function TaskItem({
   }
 
   const doneCount = task.milestones.filter((m) => m.completed).length
+  const nearest = nearestIncompleteMilestone(task.milestones)
+  const nearestUrgency = nearest ? getUrgencyLevel(nearest.date) : null
 
   return (
     <li className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm">
@@ -92,6 +95,15 @@ export default function TaskItem({
           {task.milestones.length > 0 && (
             <p className="mt-1 text-[11px] text-gray-400">
               마일스톤 {doneCount}/{task.milestones.length} 완료
+            </p>
+          )}
+          {!expanded && nearest && (
+            <p className="mt-1 flex items-center gap-1.5 text-[11px] text-gray-500">
+              {nearestUrgency && (
+                <span className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[nearestUrgency]}`} />
+              )}
+              가장 가까운 일정: {nearest.date}
+              {nearest.target && ` · ${nearest.target}`} · {nearest.content}
             </p>
           )}
         </div>
