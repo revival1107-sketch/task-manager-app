@@ -22,7 +22,7 @@ export default function App() {
   return (
     <div className="mx-auto min-h-screen max-w-2xl px-4 py-8">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold">📅 업무 관리 센터</h1>
+        <h1 className="text-2xl font-bold">📅 업무 관리</h1>
         {tasks.length > 0 && (
           <p className="mt-1 text-sm text-gray-500">
             {completedCount} / {tasks.length} 완료

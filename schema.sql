@@ -17,7 +17,7 @@ create table if not exists public.tasks (
   constraint name_not_empty check (char_length(trim(name)) > 0)
 );
 
-comment on table public.tasks is '업무 관리 센터: 업무별 마일스톤 추적.';
+comment on table public.tasks is '업무 관리: 업무별 마일스톤 추적.';
 
 -- Row Level Security: single-user app, no auth yet, anon key only.
 -- RLS stays enabled with an explicit permissive policy (rather than disabling RLS)

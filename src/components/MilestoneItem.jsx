@@ -59,7 +59,9 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
   }
 
   return (
-    <li className={`flex items-center gap-2 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-blue-50' : ''}`}>
+    <li
+      className={`flex flex-wrap items-center gap-x-2 gap-y-1 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-blue-50' : ''}`}
+    >
       <button
         type="button"
         onClick={onToggle}
@@ -73,7 +75,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         {milestone.completed ? <CheckCircle2 size={12} /> : <Circle size={12} />}
         {milestone.completed ? '완료됨' : '완료'}
       </button>
-      <span className="flex w-24 shrink-0 items-center gap-1.5 text-gray-400">
+      <span className="flex shrink-0 items-center gap-1.5 text-gray-400">
         {urgency && (
           <span
             className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[urgency]}`}
@@ -85,7 +87,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
       {milestone.target && (
         <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500">{milestone.target}</span>
       )}
-      <span className={`flex-1 ${milestone.completed ? 'text-gray-400 line-through' : 'text-gray-700'}`}>
+      <span className={`min-w-[6rem] flex-1 ${milestone.completed ? 'text-gray-400 line-through' : 'text-gray-700'}`}>
         {milestone.content}
       </span>
       {isCurrent && !milestone.completed && (
@@ -93,12 +95,14 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
           진행중
         </span>
       )}
-      <button type="button" onClick={() => setIsEditing(true)} aria-label="마일스톤 수정">
-        <Pencil size={12} className="text-gray-300 hover:text-blue-600" />
-      </button>
-      <button type="button" onClick={onDelete} aria-label="마일스톤 삭제">
-        <Trash2 size={12} className="text-gray-300 hover:text-red-600" />
-      </button>
+      <span className="ml-auto flex shrink-0 items-center gap-1">
+        <button type="button" onClick={() => setIsEditing(true)} aria-label="마일스톤 수정">
+          <Pencil size={12} className="text-gray-300 hover:text-blue-600" />
+        </button>
+        <button type="button" onClick={onDelete} aria-label="마일스톤 삭제">
+          <Trash2 size={12} className="text-gray-300 hover:text-red-600" />
+        </button>
+      </span>
     </li>
   )
 }

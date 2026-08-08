@@ -1,6 +1,6 @@
 {
-  "name": "업무 관리 센터",
-  "short_name": "업무관리",
+  "name": "업무 관리",
+  "short_name": "업무 관리",
   "description": "개인 업무 및 할 일 관리 앱",
   "lang": "ko",
   "start_url": "/",
