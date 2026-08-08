@@ -22,7 +22,7 @@ export default function TaskItem({
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const [draft, setDraft] = useState({ name: task.name, content: task.content })
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
 
   function commitEdit() {
     const trimmedName = draft.name.trim()
