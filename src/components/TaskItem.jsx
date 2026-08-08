@@ -104,7 +104,7 @@ export default function TaskItem({
           ) : (
             <>
               <p
-                className={`text-sm font-medium ${task.is_completed ? 'text-gray-400 line-through dark:text-gray-500' : 'text-gray-900 dark:text-gray-100'}`}
+                className={`text-sm font-medium ${task.is_completed ? 'text-gray-400 line-through dark:text-gray-500' : 'text-gray-900 dark:text-gray-300'}`}
               >
                 {task.name}
                 {latestDate && (
@@ -125,7 +125,7 @@ export default function TaskItem({
           )}
           {!expanded && !task.is_completed && nearest && (
             <div className="mt-1.5 rounded-md bg-gray-50 px-2.5 py-1.5 dark:bg-[#202124]">
-              <p className="flex items-center gap-1.5 text-sm font-medium text-gray-900 dark:text-gray-100">
+              <p className="flex items-center gap-1.5 text-sm font-medium text-gray-900 dark:text-gray-300">
                 {nearestUrgency && (
                   <span className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[nearestUrgency]}`} />
                 )}

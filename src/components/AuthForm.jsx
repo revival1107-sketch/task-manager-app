@@ -37,7 +37,7 @@ export default function AuthForm({ onSignIn, onSignUp }) {
 
   return (
     <div className="mx-auto mt-20 max-w-sm px-4">
-      <h1 className="mb-6 text-center text-2xl font-bold dark:text-gray-300">📅 업무 관리</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold dark:text-gray-400">📅 업무 관리</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-3 rounded-lg border border-gray-100 bg-white p-6 shadow-sm dark:border-[#3c4043] dark:bg-[#292a2d]"
