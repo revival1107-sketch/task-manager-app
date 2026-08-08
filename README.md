@@ -1,6 +1,6 @@
 # 📅 업무 관리 센터
 
-React + Vite + Tailwind CSS 4 + Supabase로 만든 개인용 업무(할 일) 관리 앱입니다. 업무 추가, 완료 토글, 수정, 삭제 기능을 제공합니다.
+React + Vite + Tailwind CSS 4 + Supabase로 만든 개인용 업무 관리 앱입니다. 업무(name/content)를 추가하고, 업무마다 여러 개의 마일스톤(날짜/대상/내용)을 추가·완료 토글·수정·삭제할 수 있습니다. 각 업무의 가장 먼저 남은(미완료) 마일스톤은 "진행중"으로 자동 표시됩니다.
 
 ## 시작하기
 
@@ -11,7 +11,7 @@ React + Vite + Tailwind CSS 4 + Supabase로 만든 개인용 업무(할 일) 관
 
 2. Supabase 프로젝트 준비
    - [supabase.com](https://supabase.com)에서 프로젝트를 생성합니다 (기존 프로젝트가 있다면 재사용해도 됩니다).
-   - 프로젝트의 **SQL Editor**에서 [`schema.sql`](./schema.sql) 내용을 실행해 `tasks` 테이블을 만듭니다.
+   - 새 프로젝트라면 **SQL Editor**에서 [`schema.sql`](./schema.sql) 내용을 실행해 `tasks` 테이블을 만듭니다 (`name`, `content`, `milestones` jsonb, `is_completed`, `current_milestone_index`).
    - **Project Settings → API**에서 Project URL과 anon public key를 확인합니다.
 
 3. 환경변수 설정
