@@ -60,7 +60,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
 
   return (
     <li
-      className={`flex flex-wrap items-center gap-x-2 gap-y-1 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-gray-50 dark:bg-white/[0.03]' : ''}`}
+      className={`flex flex-wrap items-center gap-x-2 gap-y-1 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-gray-50/60 dark:bg-white/[0.015]' : ''}`}
     >
       <button
         type="button"
@@ -95,7 +95,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         {milestone.content}
       </span>
       {isCurrent && !milestone.completed && (
-        <span className="shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-500 dark:bg-[#3c4043]/60 dark:text-gray-400">
+        <span className="shrink-0 rounded-full bg-gray-100/70 px-2 py-0.5 text-[10px] font-medium text-gray-400 dark:bg-[#3c4043]/35 dark:text-gray-500">
           진행중
         </span>
       )}
