@@ -60,12 +60,18 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
 
   return (
     <li className={`flex items-center gap-2 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-blue-50' : ''}`}>
-      <button type="button" onClick={onToggle} aria-label="마일스톤 완료 토글">
-        {milestone.completed ? (
-          <CheckCircle2 className="text-blue-600" size={16} />
-        ) : (
-          <Circle className="text-gray-300" size={16} />
-        )}
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-label="마일스톤 완료 토글"
+        className={`flex shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-medium transition-colors ${
+          milestone.completed
+            ? 'border-blue-200 bg-blue-50 text-blue-600'
+            : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600'
+        }`}
+      >
+        {milestone.completed ? <CheckCircle2 size={12} /> : <Circle size={12} />}
+        {milestone.completed ? '완료됨' : '완료'}
       </button>
       <span className="flex w-24 shrink-0 items-center gap-1.5 text-gray-400">
         {urgency && (

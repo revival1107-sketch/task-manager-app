@@ -44,12 +44,18 @@ export default function TaskItem({
   return (
     <li className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm">
       <div className="flex items-start gap-2">
-        <button type="button" onClick={() => onToggle(task)} aria-label="업무 완료 토글" className="mt-0.5 shrink-0">
-          {task.is_completed ? (
-            <CheckCircle2 className="text-blue-600" size={20} />
-          ) : (
-            <Circle className="text-gray-300" size={20} />
-          )}
+        <button
+          type="button"
+          onClick={() => onToggle(task)}
+          aria-label="업무 완료 토글"
+          className={`flex shrink-0 items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium transition-colors ${
+            task.is_completed
+              ? 'border-blue-200 bg-blue-50 text-blue-600'
+              : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600'
+          }`}
+        >
+          {task.is_completed ? <CheckCircle2 size={14} /> : <Circle size={14} />}
+          {task.is_completed ? '완료됨' : '완료'}
         </button>
 
         <div className="min-w-0 flex-1">
