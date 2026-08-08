@@ -32,19 +32,19 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
 
   if (isEditing) {
     return (
-      <li className="flex flex-wrap items-center gap-1.5 rounded bg-blue-50 px-2 py-1.5">
+      <li className="flex flex-wrap items-center gap-1.5 rounded bg-blue-50 px-2 py-1.5 dark:bg-blue-950/40">
         <input
           type="date"
           value={draft.date}
           onChange={(e) => setDraft((d) => ({ ...d, date: e.target.value }))}
           onKeyDown={handleKeyDown}
-          className="rounded border border-blue-300 px-1.5 py-1 text-xs"
+          className="rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-300"
         />
         <input
           value={draft.target}
           onChange={(e) => setDraft((d) => ({ ...d, target: e.target.value }))}
           onKeyDown={handleKeyDown}
-          className="w-24 rounded border border-blue-300 px-1.5 py-1 text-xs"
+          className="w-24 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-100"
         />
         <input
           autoFocus
@@ -52,7 +52,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
           onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
           onBlur={commitEdit}
           onKeyDown={handleKeyDown}
-          className="min-w-[8rem] flex-1 rounded border border-blue-300 px-1.5 py-1 text-xs"
+          className="min-w-[8rem] flex-1 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-100"
         />
       </li>
     )
@@ -60,7 +60,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
 
   return (
     <li
-      className={`flex flex-wrap items-center gap-x-2 gap-y-1 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-blue-50' : ''}`}
+      className={`flex flex-wrap items-center gap-x-2 gap-y-1 rounded px-2 py-1.5 text-xs ${isCurrent ? 'bg-blue-50 dark:bg-blue-950/40' : ''}`}
     >
       <button
         type="button"
@@ -68,14 +68,14 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         aria-label="마일스톤 완료 토글"
         className={`flex shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-medium transition-colors ${
           milestone.completed
-            ? 'border-blue-200 bg-blue-50 text-blue-600'
-            : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600'
+            ? 'border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400'
+            : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-gray-600 dark:text-gray-500 dark:hover:border-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400'
         }`}
       >
         {milestone.completed ? <CheckCircle2 size={12} /> : <Circle size={12} />}
         {milestone.completed ? '완료됨' : '완료'}
       </button>
-      <span className="flex shrink-0 items-center gap-1.5 text-gray-400">
+      <span className="flex shrink-0 items-center gap-1.5 text-gray-400 dark:text-gray-500">
         {urgency && (
           <span
             className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[urgency]}`}
@@ -85,22 +85,26 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         {milestone.date || '날짜 없음'}
       </span>
       {milestone.target && (
-        <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500">{milestone.target}</span>
+        <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500 dark:bg-gray-700 dark:text-gray-300">
+          {milestone.target}
+        </span>
       )}
-      <span className={`min-w-[6rem] flex-1 ${milestone.completed ? 'text-gray-400 line-through' : 'text-gray-700'}`}>
+      <span
+        className={`min-w-[6rem] flex-1 ${milestone.completed ? 'text-gray-400 line-through dark:text-gray-500' : 'text-gray-700 dark:text-gray-300'}`}
+      >
         {milestone.content}
       </span>
       {isCurrent && !milestone.completed && (
-        <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-medium text-blue-600">
+        <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
           진행중
         </span>
       )}
       <span className="ml-auto flex shrink-0 items-center gap-1">
         <button type="button" onClick={() => setIsEditing(true)} aria-label="마일스톤 수정">
-          <Pencil size={12} className="text-gray-300 hover:text-blue-600" />
+          <Pencil size={12} className="text-gray-300 hover:text-blue-600 dark:text-gray-600 dark:hover:text-blue-400" />
         </button>
         <button type="button" onClick={onDelete} aria-label="마일스톤 삭제">
-          <Trash2 size={12} className="text-gray-300 hover:text-red-600" />
+          <Trash2 size={12} className="text-gray-300 hover:text-red-600 dark:text-gray-600 dark:hover:text-red-400" />
         </button>
       </span>
     </li>

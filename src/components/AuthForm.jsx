@@ -40,9 +40,11 @@ export default function AuthForm({ onSignIn, onSignUp }) {
       <h1 className="mb-6 text-center text-2xl font-bold">📅 업무 관리</h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 rounded-lg border border-gray-100 bg-white p-6 shadow-sm"
+        className="flex flex-col gap-3 rounded-lg border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-800"
       >
-        <h2 className="text-sm font-medium text-gray-700">{mode === 'signin' ? '로그인' : '회원가입'}</h2>
+        <h2 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          {mode === 'signin' ? '로그인' : '회원가입'}
+        </h2>
         <input
           type="email"
           required
@@ -50,7 +52,7 @@ export default function AuthForm({ onSignIn, onSignUp }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="이메일"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
         />
         <input
           type="password"
@@ -60,10 +62,10 @@ export default function AuthForm({ onSignIn, onSignUp }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호 (6자 이상)"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
         />
-        {error && <p className="text-xs text-red-600">{error}</p>}
-        {info && <p className="text-xs text-blue-600">{info}</p>}
+        {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
+        {info && <p className="text-xs text-blue-600 dark:text-blue-400">{info}</p>}
         <button
           type="submit"
           disabled={submitting}
@@ -71,7 +73,11 @@ export default function AuthForm({ onSignIn, onSignUp }) {
         >
           {mode === 'signin' ? '로그인' : '가입하기'}
         </button>
-        <button type="button" onClick={toggleMode} className="text-xs text-gray-400 hover:text-blue-600">
+        <button
+          type="button"
+          onClick={toggleMode}
+          className="text-xs text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400"
+        >
           {mode === 'signin' ? '계정이 없으신가요? 회원가입' : '이미 계정이 있으신가요? 로그인'}
         </button>
       </form>

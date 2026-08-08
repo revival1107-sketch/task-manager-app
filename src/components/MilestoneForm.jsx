@@ -21,24 +21,24 @@ export default function MilestoneForm({ onAdd }) {
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="rounded border border-gray-200 px-2 py-1 text-xs text-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400"
+        className="rounded border border-gray-200 px-2 py-1 text-xs text-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
       />
       <input
         value={target}
         onChange={(e) => setTarget(e.target.value)}
         placeholder="대상"
-        className="w-24 rounded border border-gray-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400"
+        className="w-24 rounded border border-gray-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
       />
       <input
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="마일스톤 내용"
-        className="min-w-[8rem] flex-1 rounded border border-gray-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400"
+        className="min-w-[8rem] flex-1 rounded border border-gray-200 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-400 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
       />
       <button
         type="submit"
         disabled={!content.trim()}
-        className="flex items-center gap-1 rounded border border-blue-200 px-2 py-1 text-xs text-blue-600 disabled:opacity-40"
+        className="flex items-center gap-1 rounded border border-blue-200 px-2 py-1 text-xs text-blue-600 disabled:opacity-40 dark:border-blue-800 dark:text-blue-400"
       >
         <Plus size={12} /> 마일스톤 추가
       </button>

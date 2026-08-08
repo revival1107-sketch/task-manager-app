@@ -12,7 +12,7 @@ export default function TaskList({
 }) {
   if (tasks.length === 0) {
     return (
-      <p className="mt-10 text-center text-sm text-gray-400">
+      <p className="mt-10 text-center text-sm text-gray-400 dark:text-gray-500">
         아직 업무가 없습니다. 위에서 새 업무를 추가해 보세요.
       </p>
     )
