@@ -100,10 +100,10 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         </span>
       )}
       <span className="ml-auto flex shrink-0 items-center gap-1">
-        <button type="button" onClick={() => setIsEditing(true)} aria-label="마일스톤 수정">
+        <button type="button" onClick={() => setIsEditing(true)} aria-label="마일스톤 수정" title="수정">
           <Pencil size={12} className="text-gray-300 hover:text-blue-600 dark:text-gray-600 dark:hover:text-blue-400" />
         </button>
-        <button type="button" onClick={onDelete} aria-label="마일스톤 삭제">
+        <button type="button" onClick={onDelete} aria-label="마일스톤 삭제" title="삭제">
           <Trash2 size={12} className="text-gray-300 hover:text-red-600 dark:text-gray-600 dark:hover:text-red-400" />
         </button>
       </span>

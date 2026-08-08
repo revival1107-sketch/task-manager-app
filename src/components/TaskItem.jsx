@@ -75,17 +75,17 @@ export default function TaskItem({
                 onKeyDown={handleKeyDown}
                 className="rounded border border-blue-300 px-2 py-1 text-sm font-medium dark:border-blue-700 dark:bg-[#202124] dark:text-gray-100"
               />
-              <input
-                value={draft.content}
-                onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
-                onKeyDown={handleKeyDown}
-                className="rounded border border-blue-300 px-2 py-1 text-xs text-gray-500 dark:border-blue-700 dark:bg-[#202124] dark:text-gray-400"
-              />
-              <div className="flex gap-2">
+              <div className="flex items-center gap-2">
+                <input
+                  value={draft.content}
+                  onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
+                  onKeyDown={handleKeyDown}
+                  className="flex-1 rounded border border-blue-300 px-2 py-1 text-xs text-gray-500 dark:border-blue-700 dark:bg-[#202124] dark:text-gray-400"
+                />
                 <button
                   type="button"
                   onClick={commitEdit}
-                  className="text-xs font-medium text-blue-600 dark:text-blue-400"
+                  className="shrink-0 text-xs font-medium text-blue-600 dark:text-blue-400"
                 >
                   저장
                 </button>
@@ -95,7 +95,7 @@ export default function TaskItem({
                     setDraft({ name: task.name, content: task.content })
                     setIsEditing(false)
                   }}
-                  className="text-xs text-gray-400 dark:text-gray-500"
+                  className="shrink-0 text-xs text-gray-400 dark:text-gray-500"
                 >
                   취소
                 </button>
@@ -139,13 +139,20 @@ export default function TaskItem({
           )}
         </div>
 
-        <button type="button" onClick={() => setIsEditing(true)} aria-label="업무 수정" className="shrink-0">
+        <button
+          type="button"
+          onClick={() => setIsEditing(true)}
+          aria-label="업무 수정"
+          title="수정"
+          className="shrink-0"
+        >
           <Pencil size={16} className="text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400" />
         </button>
         <button
           type="button"
           onClick={() => window.confirm('이 업무를 삭제할까요? 마일스톤도 함께 삭제됩니다.') && onDelete(task.id)}
           aria-label="업무 삭제"
+          title="삭제"
           className="shrink-0"
         >
           <Trash2 size={16} className="text-gray-400 hover:text-red-600 dark:text-gray-500 dark:hover:text-red-400" />
