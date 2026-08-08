@@ -1,9 +1,29 @@
-import { Loader2 } from 'lucide-react'
+import { Loader2, LogOut } from 'lucide-react'
+import { useAuth } from './hooks/useAuth'
 import { useTasks } from './hooks/useTasks'
+import AuthForm from './components/AuthForm'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 
 export default function App() {
+  const { user, loading: authLoading, signIn, signUp, signOut } = useAuth()
+
+  if (authLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-gray-400">
+        <Loader2 className="animate-spin" size={24} />
+      </div>
+    )
+  }
+
+  if (!user) {
+    return <AuthForm onSignIn={signIn} onSignUp={signUp} />
+  }
+
+  return <TaskDashboard user={user} onSignOut={signOut} />
+}
+
+function TaskDashboard({ user, onSignOut }) {
   const {
     tasks,
     loading,
@@ -21,13 +41,25 @@ export default function App() {
 
   return (
     <div className="mx-auto min-h-screen max-w-2xl px-4 py-8">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold">📅 업무 관리</h1>
-        {tasks.length > 0 && (
-          <p className="mt-1 text-sm text-gray-500">
-            {completedCount} / {tasks.length} 완료
-          </p>
-        )}
+      <header className="mb-6 flex items-start justify-between gap-2">
+        <div>
+          <h1 className="text-2xl font-bold">📅 업무 관리</h1>
+          {tasks.length > 0 && (
+            <p className="mt-1 text-sm text-gray-500">
+              {completedCount} / {tasks.length} 완료
+            </p>
+          )}
+        </div>
+        <div className="text-right">
+          <p className="max-w-[10rem] truncate text-xs text-gray-400">{user.email}</p>
+          <button
+            type="button"
+            onClick={onSignOut}
+            className="mt-1 flex items-center gap-1 text-xs text-gray-400 hover:text-red-600"
+          >
+            <LogOut size={12} /> 로그아웃
+          </button>
+        </div>
       </header>
 
       <TaskForm onAdd={addTask} />
