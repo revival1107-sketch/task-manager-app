@@ -2,7 +2,13 @@ import { useState } from 'react'
 import { CheckCircle2, Circle, Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
 import MilestoneList from './MilestoneList'
 import MilestoneForm from './MilestoneForm'
-import { getUrgencyLevel, nearestIncompleteMilestone, URGENCY_DOT_CLASS } from '../milestoneUtils'
+import {
+  getUrgencyLevel,
+  nearestIncompleteMilestone,
+  latestMilestoneDate,
+  formatMonthDay,
+  URGENCY_DOT_CLASS,
+} from '../milestoneUtils'
 
 export default function TaskItem({
   task,
@@ -40,9 +46,10 @@ export default function TaskItem({
   const doneCount = task.milestones.filter((m) => m.completed).length
   const nearest = nearestIncompleteMilestone(task.milestones)
   const nearestUrgency = nearest ? getUrgencyLevel(nearest.date) : null
+  const latestDate = latestMilestoneDate(task.milestones)
 
   return (
-    <li className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-gray-800">
+    <li className="rounded-lg border border-gray-100 bg-white p-3 shadow-sm dark:border-[#3c4043] dark:bg-[#292a2d]">
       <div className="flex items-start gap-2">
         <button
           type="button"
@@ -51,7 +58,7 @@ export default function TaskItem({
           className={`flex shrink-0 items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium transition-colors ${
             task.is_completed
               ? 'border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400'
-              : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-gray-600 dark:text-gray-500 dark:hover:border-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400'
+              : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-[#3c4043] dark:text-gray-500 dark:hover:border-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400'
           }`}
         >
           {task.is_completed ? <CheckCircle2 size={14} /> : <Circle size={14} />}
@@ -66,13 +73,13 @@ export default function TaskItem({
                 value={draft.name}
                 onChange={(e) => setDraft((d) => ({ ...d, name: e.target.value }))}
                 onKeyDown={handleKeyDown}
-                className="rounded border border-blue-300 px-2 py-1 text-sm font-medium dark:border-blue-700 dark:bg-gray-900 dark:text-gray-100"
+                className="rounded border border-blue-300 px-2 py-1 text-sm font-medium dark:border-blue-700 dark:bg-[#202124] dark:text-gray-100"
               />
               <input
                 value={draft.content}
                 onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
                 onKeyDown={handleKeyDown}
-                className="rounded border border-blue-300 px-2 py-1 text-xs text-gray-500 dark:border-blue-700 dark:bg-gray-900 dark:text-gray-400"
+                className="rounded border border-blue-300 px-2 py-1 text-xs text-gray-500 dark:border-blue-700 dark:bg-[#202124] dark:text-gray-400"
               />
               <div className="flex gap-2">
                 <button
@@ -100,6 +107,11 @@ export default function TaskItem({
                 className={`text-sm font-medium ${task.is_completed ? 'text-gray-400 line-through dark:text-gray-500' : 'text-gray-900 dark:text-gray-100'}`}
               >
                 {task.name}
+                {latestDate && (
+                  <span className="ml-1.5 text-xs font-normal text-gray-400 dark:text-gray-500">
+                    ({formatMonthDay(latestDate)})
+                  </span>
+                )}
               </p>
               {task.content && (
                 <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{task.content}</p>
@@ -112,13 +124,18 @@ export default function TaskItem({
             </p>
           )}
           {!expanded && !task.is_completed && nearest && (
-            <p className="mt-1 flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400">
-              {nearestUrgency && (
-                <span className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[nearestUrgency]}`} />
-              )}
-              가장 가까운 일정: {nearest.date}
-              {nearest.target && ` · ${nearest.target}`} · {nearest.content}
-            </p>
+            <div className="mt-1.5 rounded-md bg-gray-50 px-2.5 py-1.5 dark:bg-[#202124]">
+              <p className="flex items-center gap-1.5 text-sm font-medium text-gray-900 dark:text-gray-100">
+                {nearestUrgency && (
+                  <span className={`h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT_CLASS[nearestUrgency]}`} />
+                )}
+                가장 가까운 일정: {formatMonthDay(nearest.date)}
+              </p>
+              <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                {nearest.target && `${nearest.target} · `}
+                {nearest.content}
+              </p>
+            </div>
           )}
         </div>
 
@@ -148,7 +165,7 @@ export default function TaskItem({
       </div>
 
       {expanded && (
-        <div className="ml-7 mt-1 border-l border-gray-100 pl-3 dark:border-gray-700">
+        <div className="ml-7 mt-1 border-l border-gray-100 pl-3 dark:border-[#3c4043]">
           <MilestoneList
             task={task}
             onToggle={onToggleMilestone}

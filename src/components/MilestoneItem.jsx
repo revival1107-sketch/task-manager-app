@@ -38,13 +38,13 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
           value={draft.date}
           onChange={(e) => setDraft((d) => ({ ...d, date: e.target.value }))}
           onKeyDown={handleKeyDown}
-          className="rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-300"
+          className="rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-[#202124] dark:text-gray-300"
         />
         <input
           value={draft.target}
           onChange={(e) => setDraft((d) => ({ ...d, target: e.target.value }))}
           onKeyDown={handleKeyDown}
-          className="w-24 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-100"
+          className="w-24 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-[#202124] dark:text-gray-100"
         />
         <input
           autoFocus
@@ -52,7 +52,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
           onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
           onBlur={commitEdit}
           onKeyDown={handleKeyDown}
-          className="min-w-[8rem] flex-1 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-gray-900 dark:text-gray-100"
+          className="min-w-[8rem] flex-1 rounded border border-blue-300 px-1.5 py-1 text-xs dark:border-blue-700 dark:bg-[#202124] dark:text-gray-100"
         />
       </li>
     )
@@ -69,7 +69,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         className={`flex shrink-0 items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-medium transition-colors ${
           milestone.completed
             ? 'border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400'
-            : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-gray-600 dark:text-gray-500 dark:hover:border-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400'
+            : 'border-gray-200 text-gray-400 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-[#3c4043] dark:text-gray-500 dark:hover:border-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400'
         }`}
       >
         {milestone.completed ? <CheckCircle2 size={12} /> : <Circle size={12} />}
@@ -85,7 +85,7 @@ export default function MilestoneItem({ milestone, isCurrent, onToggle, onEdit, 
         {milestone.date || '날짜 없음'}
       </span>
       {milestone.target && (
-        <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500 dark:bg-gray-700 dark:text-gray-300">
+        <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 text-gray-500 dark:bg-[#3c4043] dark:text-gray-300">
           {milestone.target}
         </span>
       )}

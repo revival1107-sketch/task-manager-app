@@ -44,3 +44,20 @@ export function nearestIncompleteMilestone(milestones) {
   }
   return nearest
 }
+
+// 완료 여부와 상관없이 전체 마일스톤 중 가장 늦은(최종) 날짜를 반환. 없으면 null.
+export function latestMilestoneDate(milestones) {
+  let latest = null
+  for (const m of milestones) {
+    const d = parseLocalDate(m.date)
+    if (!d) continue
+    if (!latest || d > latest.dateObj) latest = { dateStr: m.date, dateObj: d }
+  }
+  return latest ? latest.dateStr : null
+}
+
+// 'YYYY-MM-DD' -> 'M월 D일'
+export function formatMonthDay(dateStr) {
+  const parts = dateStr.split('-').map(Number)
+  return `${parts[1]}월 ${parts[2]}일`
+}

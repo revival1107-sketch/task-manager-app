@@ -37,10 +37,10 @@ export default function AuthForm({ onSignIn, onSignUp }) {
 
   return (
     <div className="mx-auto mt-20 max-w-sm px-4">
-      <h1 className="mb-6 text-center text-2xl font-bold">📅 업무 관리</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold dark:text-gray-300">📅 업무 관리</h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 rounded-lg border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-800"
+        className="flex flex-col gap-3 rounded-lg border border-gray-100 bg-white p-6 shadow-sm dark:border-[#3c4043] dark:bg-[#292a2d]"
       >
         <h2 className="text-sm font-medium text-gray-700 dark:text-gray-300">
           {mode === 'signin' ? '로그인' : '회원가입'}
@@ -52,7 +52,7 @@ export default function AuthForm({ onSignIn, onSignUp }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="이메일"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-[#3c4043] dark:bg-[#202124] dark:text-gray-100"
         />
         <input
           type="password"
@@ -62,7 +62,7 @@ export default function AuthForm({ onSignIn, onSignUp }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호 (6자 이상)"
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-[#3c4043] dark:bg-[#202124] dark:text-gray-100"
         />
         {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
         {info && <p className="text-xs text-blue-600 dark:text-blue-400">{info}</p>}
